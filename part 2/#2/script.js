@@ -9,17 +9,17 @@ const g = p.match(/(\w+)\s([0-9]+)/gm).map((e) => {
 });
 let horisontal = 0;
 let depth = 0;
+let aim = 0;
 for (let i = 0; i < g.length; i++) {
-  
   if (Object.keys(g[i])[0] === "forward") {
-    console.log(g[i]["up"]);
-    horisontal += g[i]["forward"] 
+    horisontal += g[i]["forward"];
+    depth += g[i]["forward"] * aim;
   }
   if (Object.keys(g[i])[0] === "down") {
-    depth += g[i]["down"];
+    aim += g[i]["down"];
   }
   if (Object.keys(g[i])[0] === "up") {
-    depth -= g[i]["up"];
+    aim -= g[i]["up"];
   }
 }
 console.log(horisontal * depth);
