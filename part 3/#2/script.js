@@ -1,37 +1,28 @@
 const p = document.querySelector("p").innerHTML;
 
-let g = p.match(/\w+/gm)
+let a = p.match(/\w+/gm);
+let g = p.match(/\w+/gm);
+let count = 1;
 
-let hj = {};
-for (let i = 0; i < g.length; i++) {
-  for (let j = 0; j < g[i].length; j++) {
-    if (g[i][j] === "0") {
-      if (hj[j] === undefined) {
-        hj[j] = -1;
-      }
-      hj[j] += -1;
-    }
-    if (g[i][j] === "1") {
-      if (hj[j] === undefined) {
-        hj[j] = 1;
-      }
-      hj[j] += 1;
-    }
+for (let i = 0; i < count; i++) {
+  let zero = g.filter((e) => e[i] === "0");
+  let one = g.filter((e) => e[i] === "1");
+  g = zero.length <= one.length ? one : zero;
+
+  if (g.length > 1) {
+    count++;
   }
 }
-let pfd = Object.values(hj);
-let life_support = g
-let oxygen =g
-for (let l = 0; l < pfd.length; l++) {
-  if (pfd[l] < 0) {
-    life_support = life_support.filter((el) => el[l] === "1");
-    console.log(g);
-  }
-  if (pfd[l] > 0) {
-    life_support = life_support.filter((el) => el[l] === "0");
+let counter = 1;
+for (let i = 0; i < counter; i++) {
+  let zero = a.filter((e) => e[i] === "0");
+  let one = a.filter((e) => e[i] === "1");
+  a = zero.length > one.length ? one : zero;
+  if (a.length > 1) {
+    counter++;
   }
 }
 
-console.log(g);
 
+console.log(parseInt(a[0], 2)*parseInt(g[0], 2));
 
